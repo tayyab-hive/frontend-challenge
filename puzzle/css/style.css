@@ -1,0 +1,41 @@
+.puzzle-figure {
+  background-color: #000;
+  width: 300px;
+  height: 300px;
+  border-radius: 8px;
+  margin: 32px;
+  padding: 16px;
+}
+
+.puzzle {
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+ul, li {
+  list-style: none;
+  margin: 0;
+}
+
+.tile {
+  background-color: #fff;
+  color: #000;
+  width: 84px;
+  height: 84px;
+  font-size: 32px;
+  line-height: 80px;
+  border-top: 8px solid #ccc;
+  border-left: 8px solid #ccc;
+  border-right: 8px solid #666;
+  border-bottom: 8px solid #666;
+  text-align: center;
+  position: absolute;
+  transition: left 80ms, top 80ms;
+}
+
+figcaption {
+  margin-top: 24px;
+  font-size: 24px;
+  text-align: center;
+}
