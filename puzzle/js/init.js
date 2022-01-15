@@ -4,26 +4,30 @@
 */
 
 /**
-   * Utility function to shuffle a 2d array.
-   *
-   * @param {Array<Array<any>>} arr 2d Array to shuffle
-   ** @return {Array<Array<any>>} shuffled array
-   */
-const shuffle2DArray = (arr)=>{
-  if(!arr.length) return arr;
+ * Utility function to shuffle a 2d array.
+ *
+ * @param {Array<Array<any>>} arr 2d Array to shuffle
+ ** @return {Array<Array<any>>} shuffled array
+ */
+const shuffle2DArray = arr => {
+  if (!arr.length) return arr;
 
   const sizeOfRow = arr[0].length;
-  let tempArray = arr.reduce((prevValue,currentValue)=>[...prevValue,...currentValue],[]);
-    
-    for (let i = tempArray.length - 1; i > 0; i--) {
-      let j = Math.floor(Math.random() * (i + 1));
-      [tempArray[i], tempArray[j]] = [tempArray[j], tempArray[i]];
-    }
+  let tempArray = arr.reduce(
+    (prevValue, currentValue) => [...prevValue, ...currentValue],
+    [],
+  );
 
-    resultArray = [];
-    while(tempArray.length) resultArray = [...resultArray,tempArray.splice(0,sizeOfRow)];
-    return resultArray;
-}
+  for (let i = tempArray.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [tempArray[i], tempArray[j]] = [tempArray[j], tempArray[i]];
+  }
+
+  resultArray = [];
+  while (tempArray.length)
+    resultArray = [...resultArray, tempArray.splice(0, sizeOfRow)];
+  return resultArray;
+};
 
 /* 
   Defining some common constants which will be used by over main program
@@ -61,7 +65,7 @@ const CURRENT_GRID_SIZE = 9;
     );
   };
 
-   /**
+  /**
    * Give position of a tile
    *
    * @param {number} row Row of the tile for which we want to find the position.
@@ -69,10 +73,10 @@ const CURRENT_GRID_SIZE = 9;
    ** @return {Array<int>} Position of a title in 2d plane
    */
   const getStyleForPosition = (row, col) => {
-    return [`${row*100}px`,`${col*100}px`];
+    return [`${row * 100}px`, `${col * 100}px`];
   };
 
-   /**
+  /**
    * Computes the indexes from state against the given number
    *
    * @param {number} value value for which indexes is supposed to be computed.
@@ -89,7 +93,7 @@ const CURRENT_GRID_SIZE = 9;
     return null;
   };
 
-   /**
+  /**
    * Check if puzzle is solved.
    *
    * @return {boolean} if puzzle is solved.
@@ -109,7 +113,7 @@ const CURRENT_GRID_SIZE = 9;
     return isWin;
   };
 
-   /**
+  /**
    * Shuffle and render board.
    */
   const initializeGame = () => {
@@ -117,7 +121,7 @@ const CURRENT_GRID_SIZE = 9;
     renderBoard();
   };
 
-   /**
+  /**
    * A higher order function that bind a tile with it's click function.
    *
    * @param {number} value Tile for whose click the function will be bound.
@@ -132,9 +136,9 @@ const CURRENT_GRID_SIZE = 9;
       if (isSafe(destinationI, destinationJ)) {
         state[destinationI][destinationJ] = state[initialI][initialJ];
         state[initialI][initialJ] = null;
-        if(!isSolved()){
+        if (!isSolved()) {
           renderBoard();
-        }else{
+        } else {
           alert('You win!!!');
           initializeGame();
         }
@@ -142,19 +146,19 @@ const CURRENT_GRID_SIZE = 9;
     }
   };
 
-   /**
+  /**
    * Render board on screen using the tiles.
    */
   const renderBoard = () => {
     tiles.forEach((tile, index) => {
       const [row, col] = getIndexes(index + 1);
-      const [left,top]  = getStyleForPosition(row, col)
+      const [left, top] = getStyleForPosition(row, col);
       tile.style.left = left;
       tile.style.top = top;
     });
   };
 
-   /**
+  /**
    * Initialize our game.
    * Assign events to tiles and figcaption.
    * Entry point of our code.
